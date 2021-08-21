@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import PredictionRequest from './components/api/predictions';
 import Comparison from './components/components/Comparsion/Comparison';
 import H2H from './components/components/H2H/H2H';
+import fixtureEvents from './components/api/fixtureEvents';
 
 function App() {
 
@@ -993,19 +994,446 @@ function App() {
         }
 );
   const [error, setError] = useState('');
+  const [events, setEvents] = useState([
+    {
+        "time": {
+            "elapsed": 25,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 6126,
+            "name": "F. Andrada"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Goal",
+        "detail": "Normal Goal",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 33,
+            "extra": null
+        },
+        "team": {
+            "id": 442,
+            "name": "Defensa Y Justicia",
+            "logo": "https://media.api-sports.io/football/teams/442.png"
+        },
+        "player": {
+            "id": 5936,
+            "name": "Julio González"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 33,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 6126,
+            "name": "Federico Andrada"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 36,
+            "extra": null
+        },
+        "team": {
+            "id": 442,
+            "name": "Defensa Y Justicia",
+            "logo": "https://media.api-sports.io/football/teams/442.png"
+        },
+        "player": {
+            "id": 5931,
+            "name": "Diego Rodríguez"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 39,
+            "extra": null
+        },
+        "team": {
+            "id": 442,
+            "name": "Defensa Y Justicia",
+            "logo": "https://media.api-sports.io/football/teams/442.png"
+        },
+        "player": {
+            "id": 5954,
+            "name": "Fernando Márquez"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 44,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 6262,
+            "name": "Emanuel Iñiguez"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 46,
+            "extra": null
+        },
+        "team": {
+            "id": 442,
+            "name": "Defensa Y Justicia",
+            "logo": "https://media.api-sports.io/football/teams/442.png"
+        },
+        "player": {
+            "id": 35695,
+            "name": "D. Rodríguez"
+        },
+        "assist": {
+            "id": 5947,
+            "name": "B. Merlini"
+        },
+        "type": "subst",
+        "detail": "Substitution 1",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 62,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 6093,
+            "name": "Gonzalo Verón"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 73,
+            "extra": null
+        },
+        "team": {
+            "id": 442,
+            "name": "Defensa Y Justicia",
+            "logo": "https://media.api-sports.io/football/teams/442.png"
+        },
+        "player": {
+            "id": 5942,
+            "name": "A. Castro"
+        },
+        "assist": {
+            "id": 6059,
+            "name": "G. Mainero"
+        },
+        "type": "subst",
+        "detail": "Substitution 2",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 74,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 6561,
+            "name": "N. Solís"
+        },
+        "assist": {
+            "id": 35845,
+            "name": "H. Burbano"
+        },
+        "type": "subst",
+        "detail": "Substitution 1",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 75,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 6093,
+            "name": "G. Verón"
+        },
+        "assist": {
+            "id": 6396,
+            "name": "N. Bazzana"
+        },
+        "type": "subst",
+        "detail": "Substitution 2",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 79,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 6474,
+            "name": "G. Gil"
+        },
+        "assist": {
+            "id": 6550,
+            "name": "F. Grahl"
+        },
+        "type": "subst",
+        "detail": "Substitution 3",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 79,
+            "extra": null
+        },
+        "team": {
+            "id": 442,
+            "name": "Defensa Y Justicia",
+            "logo": "https://media.api-sports.io/football/teams/442.png"
+        },
+        "player": {
+            "id": 5936,
+            "name": "J. González"
+        },
+        "assist": {
+            "id": 70767,
+            "name": "B. Ojeda"
+        },
+        "type": "subst",
+        "detail": "Substitution 3",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 84,
+            "extra": null
+        },
+        "team": {
+            "id": 442,
+            "name": "Defensa Y Justicia",
+            "logo": "https://media.api-sports.io/football/teams/442.png"
+        },
+        "player": {
+            "id": 6540,
+            "name": "Juan Rodriguez"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 85,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 35845,
+            "name": "Hernán Burbano"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 90,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 35845,
+            "name": "Hernán Burbano"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Red Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 90,
+            "extra": null
+        },
+        "team": {
+            "id": 442,
+            "name": "Defensa Y Justicia",
+            "logo": "https://media.api-sports.io/football/teams/442.png"
+        },
+        "player": {
+            "id": 5912,
+            "name": "Neri Cardozo"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    },
+    {
+        "time": {
+            "elapsed": 90,
+            "extra": null
+        },
+        "team": {
+            "id": 463,
+            "name": "Aldosivi",
+            "logo": "https://media.api-sports.io/football/teams/463.png"
+        },
+        "player": {
+            "id": 35845,
+            "name": "Hernán Burbano"
+        },
+        "assist": {
+            "id": null,
+            "name": null
+        },
+        "type": "Card",
+        "detail": "Yellow Card",
+        "comments": null
+    }
+]);
 
   useEffect(() => {
       // const res = PredictionRequest();
-      // res.then(res => setData(res.response[0])).catch(err => setError(err.message));       
+      // res.then(res => setData(res.response[0])).catch(err => setError(err.message));
+      // const evs = fixtureEvents();
+      // evs.then(res => setEvents(res.response)).catch(err => setError(err.message)) 
   },[]);
 
   console.log('Def data',data, error);
+  console.log(events);
+
+  function sortArr() {
+        const [...tmp] = events;
+        tmp.sort((a,b) => {
+        if(a.detail > b.detail){
+          return 1;
+        }
+        if(a.detail < b.detail){
+          return -1;
+        }
+        return 0;
+      });
+      setEvents(tmp);
+  }
+
+  function filterArr() {
+      const [...tmp] = events;
+      const res  = tmp.filter(item => item.detail === "Yellow Card");
+      console.log(res);
+      setEvents(res);
+  }
+
+  let eventsNode = events.map((event,i) => <div key={i}>{event.detail}</div>)
 
   return (
     <div className="App">
       App
       <Comparison data={data.comparison} />
       <H2H data={data.h2h} />
+      {eventsNode}
+      <button onClick={() => sortArr()}>Sort</button>
+      <button onClick={() => filterArr()}>Filter</button>
     </div>
   );
 }

@@ -6,8 +6,6 @@ function TH(props) {
 
     const item = props.item;
 
-    console.log(item);
-
     return <>
         <Goals goals={item.goals} />
         <Legue league={item.league} />

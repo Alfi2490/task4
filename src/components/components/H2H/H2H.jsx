@@ -5,7 +5,6 @@ function H2H(props) {
     let tr = [];
 
     const data = props.data;
-    console.log(data[0]);
 
     tr = data.map((item,i) => <tr key={i}><TH item={item}/></tr>);
 
